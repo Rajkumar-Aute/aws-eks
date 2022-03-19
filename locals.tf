@@ -10,10 +10,15 @@ workspace strings has been added we can create different env using workspace
  */
 
 locals {
-
-  anyware                            = "0.0.0.0/0"
-  cidr                               = "172.0.0.0/24"
-  security-group-name                = "all-open-public"
-  http                               = 80
-  ssh                                = 22
-}
+  subnets                = ["web-sub1-${terraform.workspace}", "web-sub2-${terraform.workspace}", "app-sub1-${terraform.workspace}", "app-sub2-${terraform.workspace}", "db-sub1-${terraform.workspace}", "db-sub2-${terraform.workspace}"]
+  igw-name               = "igw-${terraform.workspace}"
+  anyware                = "0.0.0.0/0"
+  route-table-public     = "rt-pub-${terraform.workspace}"
+  route-table-private    = "rt-pri-${terraform.workspace}"
+  securitygroup-name-web = "security-group-web-${terraform.workspace}"
+  securitygroup-name-app = "security-group-app-${terraform.workspace}"
+  securitygroup-name-db  = "security-group-db-${terraform.workspace}"
+  ssh                    = 22
+  http                   = 80
+  tcp                    = "tcp"
+  dbport                 = "3306"
